@@ -1,4 +1,6 @@
 #include <zmq_pointcloud_transport/zmq_pointcloud_transport.h>
+#include <pcl/point_types.h>
+#include <pcl/point_cloud.h>
 
 int main(int argc, char *argv[])
 {
@@ -6,7 +8,7 @@ int main(int argc, char *argv[])
     zpt.init(ZPT::SENDER);
     usleep(100000);
 
-    pcl::PointCloud<ZPT::PointT>::Ptr cloud (new pcl::PointCloud<ZPT::PointT>);
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZRGB>);
 
     cloud->width = 100000;
     cloud->height = 1;

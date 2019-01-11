@@ -1,5 +1,7 @@
 #include <zmq_pointcloud_transport/zmq_pointcloud_transport.h>
 #include <pcl/PCLPointCloud2.h>
+#include <pcl/point_types.h>
+#include <pcl/point_cloud.h>
 #include <pcl/visualization/cloud_viewer.h>
 int main(int argc, char *argv[])
 {
@@ -9,7 +11,7 @@ int main(int argc, char *argv[])
 
     pcl::visualization::CloudViewer viewer("Cloud Viewer");
     pcl::PCLPointCloud2::Ptr pc(new pcl::PCLPointCloud2);
-    pcl::PointCloud<ZPT::PointT>::Ptr cloud (new pcl::PointCloud<ZPT::PointT>);
+    pcl::PointCloud<pcl::PointXYZRGB>::Ptr cloud (new pcl::PointCloud<pcl::PointXYZRGB>);
     while (true)
     {
         zpt.receive(pc);
