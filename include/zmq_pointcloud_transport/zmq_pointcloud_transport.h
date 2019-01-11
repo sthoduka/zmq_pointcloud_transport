@@ -180,17 +180,17 @@ namespace ZPT
             if (type == SENDER || type == SENDER_AND_RECEIVER)
             {
                 publisher.reset(new zmq::socket_t(context, ZMQ_PUB));
-                publisher->bind("ipc://pointcloud_pub.ipc");
+                publisher->bind("ipc:///tmp/pointcloud_pub.ipc");
                 server.reset(new zmq::socket_t(context, ZMQ_REP));
-                server->bind("ipc://pointcloud_srv.ipc");
+                server->bind("ipc:///tmp/pointcloud_srv.ipc");
             }
             if (type == RECEIVER || type == SENDER_AND_RECEIVER)
             {
                 subscriber.reset(new zmq::socket_t(context, ZMQ_SUB));
-                subscriber->connect("ipc://pointcloud_pub.ipc");
+                subscriber->connect("ipc:///tmp/pointcloud_pub.ipc");
                 subscriber->setsockopt(ZMQ_SUBSCRIBE, "", 0);
                 client.reset(new zmq::socket_t(context, ZMQ_REQ));
-                client->connect("ipc://pointcloud_srv.ipc");
+                client->connect("ipc:///tmp/pointcloud_srv.ipc");
             }
         }
 
